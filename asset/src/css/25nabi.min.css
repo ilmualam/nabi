@@ -1,0 +1,93 @@
+#ilmx-nabi-tool * {box-sizing:border-box; margin:0; padding:0}
+#ilmx-nabi-tool {font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width:760px; margin:24px auto}
+#ilmx-nabi-tool .ilmx-tab-panel {display:none !important}
+#ilmx-nabi-tool .ilmx-tab-panel.ilmx-active {display:block !important}
+#ilmx-nabi-tool .ilmx-hidden {display:none !important}
+#ilmx-nabi-tool .ilmx-show {display:block !important}
+#ilmx-nabi-tool .ilmx-show-flex {display:flex !important}
+#ilmx-nabi-tool .ilmx-quiz-fb {display:none}
+#ilmx-nabi-tool .ilmx-quiz-fb.ilmx-show {display:block !important}
+#ilmx-nabi-tool .ilmx-tool-wrap {background:#f8fffe; border:1px solid #c8e6d0; border-radius:16px; overflow:hidden; margin:0}
+#ilmx-nabi-tool .ilmx-tool-header {background:linear-gradient(135deg,#0c3808,#249749); padding:18px 20px 14px}
+#ilmx-nabi-tool .ilmx-tool-header h3 {color:#fff !important; font-size:1.05rem; margin:0 0 4px; font-weight:700}
+#ilmx-nabi-tool .ilmx-tool-header p {color:rgba(255,255,255,.8); font-size:.8rem; margin:0}
+#ilmx-nabi-tool .ilmx-tool-body {padding:14px}
+#ilmx-nabi-tool .ilmx-tabs {display:flex; gap:4px; margin-bottom:14px; background:#e8f5ec; border-radius:8px; padding:4px}
+#ilmx-nabi-tool .ilmx-tab {flex:1; padding:8px 4px; background:transparent; border:none; cursor:pointer; border-radius:6px; font-size:.8rem; font-weight:700; color:#249749; transition:background .2s, color .2s; min-height:36px; font-family:inherit}
+#ilmx-nabi-tool .ilmx-tab.ilmx-active {background:#249749 !important; color:#fff !important}
+#ilmx-nabi-tool .ilmx-tab:hover:not(.ilmx-active) {background:rgba(36,151,73,.12)}
+#ilmx-nabi-tool .ilmx-search-row {display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap}
+#ilmx-nabi-tool .ilmx-search-input {flex:1; min-width:160px; padding:9px 12px; border:1.5px solid #c8e6d0; border-radius:8px; font-size:.88rem; outline:none; font-family:inherit}
+#ilmx-nabi-tool .ilmx-search-input:focus {border-color:#249749}
+#ilmx-nabi-tool .ilmx-filter-sel {padding:8px 10px; border:1.5px solid #c8e6d0; border-radius:8px; font-size:.82rem; background:#fff; color:#0c3808; cursor:pointer; outline:none; font-family:inherit}
+#ilmx-nabi-tool .ilmx-result-count {font-size:.75rem; color:#888; margin-bottom:8px}
+#ilmx-nabi-tool .ilmx-cards {display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px}
+
+@media(max-width:480px) {
+#ilmx-nabi-tool .ilmx-cards {grid-template-columns:1fr 1fr}
+}
+
+#ilmx-nabi-tool .ilmx-card {background:#fff; border:1.5px solid #e0f0e6; border-radius:10px; padding:12px 10px; cursor:pointer; transition:transform .18s, box-shadow .18s, border-color .18s; text-align:center; position:relative}
+#ilmx-nabi-tool .ilmx-card:hover {transform:translateY(-3px); box-shadow:0 6px 18px rgba(36,151,73,.15); border-color:#249749}
+#ilmx-nabi-tool .ilmx-card.ilmx-ulul {border-color:#D4A017; background:linear-gradient(135deg,#fffbf0,#fff)}
+#ilmx-nabi-tool .ilmx-card.ilmx-ulul::before {content:'⭐'; position:absolute; top:5px; right:7px; font-size:.68rem}
+#ilmx-nabi-tool .ilmx-card-num {display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; background:#249749; color:#fff; border-radius:50%; font-size:.72rem; font-weight:700; margin-bottom:5px}
+#ilmx-nabi-tool .ilmx-card.ilmx-ulul .ilmx-card-num {background:#D4A017}
+#ilmx-nabi-tool .ilmx-card-name {font-weight:700; font-size:.82rem; color:#0c3808; margin-bottom:2px}
+#ilmx-nabi-tool .ilmx-card-arabic {font-size:.7rem; color:#888; line-height:1.3}
+#ilmx-nabi-tool .ilmx-card-tag {font-size:.65rem; color:#249749; font-weight:700; margin-top:3px}
+#ilmx-nabi-tool .ilmx-card.ilmx-ulul .ilmx-card-tag {color:#D4A017}
+#ilmx-nabi-tool .ilmx-tl-hint {font-size:.78rem; color:#777; margin-bottom:10px}
+#ilmx-nabi-tool .ilmx-timeline {position:relative; padding-left:26px}
+#ilmx-nabi-tool .ilmx-timeline::before {content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(#249749,#0c3808)}
+#ilmx-nabi-tool .ilmx-tl-item {position:relative; margin-bottom:10px; padding:10px 12px; background:#fff; border:1px solid #e0f0e6; border-radius:9px; cursor:pointer; transition:border-color .18s}
+#ilmx-nabi-tool .ilmx-tl-item:hover {border-color:#249749}
+#ilmx-nabi-tool .ilmx-tl-item.ilmx-ulul-tl {border-color:#D4A017; background:#fffbf0}
+#ilmx-nabi-tool .ilmx-tl-dot {position:absolute; left:-22px; top:50%; transform:translateY(-50%); width:12px; height:12px; background:#249749; border-radius:50%; border:2px solid #fff; box-shadow:0 0 0 2px #249749}
+#ilmx-nabi-tool .ilmx-tl-item.ilmx-ulul-tl .ilmx-tl-dot {background:#D4A017; box-shadow:0 0 0 2px #D4A017}
+#ilmx-nabi-tool .ilmx-tl-num {font-size:.65rem; color:#aaa; font-weight:700}
+#ilmx-nabi-tool .ilmx-tl-name {font-weight:700; color:#0c3808; font-size:.88rem; margin:2px 0}
+#ilmx-nabi-tool .ilmx-tl-desc {font-size:.76rem; color:#666; line-height:1.45}
+#ilmx-nabi-tool .ilmx-quiz-progress {font-size:.75rem; color:#777; margin-bottom:5px}
+#ilmx-nabi-tool .ilmx-quiz-bar {height:5px; background:#e0f0e6; border-radius:3px; margin-bottom:12px; overflow:hidden}
+#ilmx-nabi-tool .ilmx-quiz-bar-fill {height:100%; background:#249749; border-radius:3px; transition:width .4s}
+#ilmx-nabi-tool .ilmx-quiz-q {font-size:.95rem; font-weight:700; color:#0c3808; margin-bottom:12px; line-height:1.5; min-height:48px}
+#ilmx-nabi-tool .ilmx-quiz-opts {display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px}
+
+@media(max-width:420px) {
+#ilmx-nabi-tool .ilmx-quiz-opts {grid-template-columns:1fr}
+}
+
+#ilmx-nabi-tool .ilmx-quiz-opt {padding:10px 12px; background:#fff; border:2px solid #c8e6d0; border-radius:8px; cursor:pointer; font-size:.84rem; color:#0c3808; text-align:left; transition:all .15s; line-height:1.4; font-family:inherit}
+#ilmx-nabi-tool .ilmx-quiz-opt:hover:not(:disabled) {background:#e8f5ec; border-color:#249749}
+#ilmx-nabi-tool .ilmx-quiz-opt.ilmx-correct {background:#e0f5e9 !important; border-color:#249749 !important; font-weight:700}
+#ilmx-nabi-tool .ilmx-quiz-opt.ilmx-wrong {background:#ffeef0 !important; border-color:#e05555 !important; font-weight:700}
+#ilmx-nabi-tool .ilmx-quiz-opt:disabled {cursor:default}
+#ilmx-nabi-tool .ilmx-quiz-fb {padding:10px 14px; border-radius:8px; margin-bottom:10px; font-size:.87rem}
+#ilmx-nabi-tool .ilmx-quiz-fb.ilmx-ok {background:#e0f5e9; color:#0c5c20}
+#ilmx-nabi-tool .ilmx-quiz-fb.ilmx-nope {background:#ffeef0; color:#a00}
+#ilmx-nabi-tool .ilmx-quiz-score {text-align:center; padding:20px 16px}
+#ilmx-nabi-tool .ilmx-quiz-score h4 {font-size:1.1rem; color:#0c3808; margin-bottom:6px}
+#ilmx-nabi-tool .ilmx-quiz-score p {font-size:.88rem; color:#555}
+#ilmx-nabi-tool .ilmx-score-big {font-size:2.5rem; font-weight:700; color:#249749; display:block; margin:10px 0}
+#ilmx-nabi-tool .ilmx-btn-sm {display:inline-flex; align-items:center; gap:5px; background:#249749; color:#fff; border:none; padding:7px 14px; border-radius:6px; font-size:.8rem; font-weight:700; cursor:pointer; transition:background .15s; min-height:34px; font-family:inherit; margin-top:6px}
+#ilmx-nabi-tool .ilmx-btn-sm:hover {background:#1d7d3c}
+#ilmx-nabi-tool .ilmx-btn-primary {display:inline-flex; align-items:center; gap:6px; background:#249749; color:#fff; border:none; padding:10px 22px; border-radius:8px; font-size:.88rem; font-weight:700; cursor:pointer; transition:background .2s; min-height:40px; font-family:inherit; margin-top:12px}
+#ilmx-nabi-tool .ilmx-btn-primary:hover {background:#1d7d3c}
+#ilmx-nabi-tool .ilmx-empty {text-align:center; padding:24px; font-size:.88rem; color:#aaa}
+#ilmx-nabi-modal {position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:99999; display:flex; align-items:center; justify-content:center; padding:16px; opacity:0; pointer-events:none; transition:opacity .25s}
+#ilmx-nabi-modal.ilmx-modal-open {opacity:1; pointer-events:all}
+#ilmx-nabi-modal .ilmx-mbox {background:#fff; border-radius:16px; max-width:520px; width:100%; max-height:88vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.3)}
+#ilmx-nabi-modal .ilmx-mtop {background:linear-gradient(135deg,#0c3808,#249749); padding:18px; border-radius:16px 16px 0 0; position:relative}
+#ilmx-nabi-modal .ilmx-mclose {position:absolute; top:10px; right:10px; background:rgba(255,255,255,.2); border:none; color:#fff; width:28px; height:28px; border-radius:50%; cursor:pointer; font-size:1rem; line-height:1; font-family:inherit}
+#ilmx-nabi-modal .ilmx-mclose:hover {background:rgba(255,255,255,.35)}
+#ilmx-nabi-modal .ilmx-mnum {font-size:.72rem; color:rgba(255,255,255,.65); margin-bottom:3px; font-weight:700}
+#ilmx-nabi-modal .ilmx-mname {font-size:1.4rem; color:#fff; font-weight:700; margin-bottom:3px}
+#ilmx-nabi-modal .ilmx-mgelaran {font-size:.8rem; color:#a8f0c0; font-style:italic}
+#ilmx-nabi-modal .ilmx-mbody {padding:16px 18px}
+#ilmx-nabi-modal .ilmx-mlabel {font-size:.66rem; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#249749; margin-bottom:4px}
+#ilmx-nabi-modal .ilmx-mtext {font-size:.88rem; line-height:1.65; color:#333; margin-bottom:12px}
+#ilmx-nabi-modal .ilmx-mmukjizat {background:#f0faf3; border-radius:8px; padding:10px 12px; font-size:.86rem; line-height:1.6; color:#1a4a1a; margin-bottom:12px}
+#ilmx-nabi-modal .ilmx-mtags {display:flex; flex-wrap:wrap; gap:5px}
+#ilmx-nabi-modal .ilmx-mtag {background:#e8f5ec; color:#0c3808; font-size:.7rem; padding:3px 9px; border-radius:20px; font-weight:700}
+#ilmx-nabi-modal .ilmx-mtag.ilmx-gold {background:#fff3cc; color:#7a5a00}
