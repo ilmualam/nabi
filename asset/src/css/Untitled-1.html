@@ -1,0 +1,799 @@
+<div class="cc-container">
+	<div class="cc-main">
+		<!-- Header -->
+		<header class="cc-header">
+			<h2>🎨 Color Contrast Checker</h2>
+			<p>WCAG 2.2 Compliant • Instant AA/AAA Ratings • Color Blindness Simulation</p>
+		</header>
+		<!-- Main Tool -->
+		<div class="cc-tool" role="application" aria-label="Color Contrast Checker Tool">
+			<!-- Color Inputs -->
+			<div class="cc-inputs">
+				<!-- Foreground Color -->
+				<div class="cc-input-group">
+					<label class="cc-label" for="cc-fg-input">Text Color (Foreground)</label>
+					<div class="cc-input-wrapper">
+						<input type="color" id="cc-fg-picker" class="cc-color-preview" value="#112a46" aria-label="Pick foreground color">
+						<input type="text" id="cc-fg-input" class="cc-color-input" value="#112a46" placeholder="#112a46" aria-label="Enter foreground color hex code">
+					</div>
+					<div class="cc-format-tabs">
+						<button class="cc-format-tab active" data-format="hex" data-target="fg">HEX</button>
+						<button class="cc-format-tab" data-format="rgb" data-target="fg">RGB</button>
+						<button class="cc-format-tab" data-format="hsl" data-target="fg">HSL</button>
+					</div>
+				</div>
+				<!-- Background Color -->
+				<div class="cc-input-group">
+					<label class="cc-label" for="cc-bg-input">Background Color</label>
+					<div class="cc-input-wrapper">
+						<input type="color" id="cc-bg-picker" class="cc-color-preview" value="#acc8e5" aria-label="Pick background color">
+						<input type="text" id="cc-bg-input" class="cc-color-input" value="#acc8e5" placeholder="#acc8e5" aria-label="Enter background color hex code">
+					</div>
+					<div class="cc-format-tabs">
+						<button class="cc-format-tab active" data-format="hex" data-target="bg">HEX</button>
+						<button class="cc-format-tab" data-format="rgb" data-target="bg">RGB</button>
+						<button class="cc-format-tab" data-format="hsl" data-target="bg">HSL</button>
+					</div>
+				</div>
+			</div>
+			<!-- Results -->
+			<div class="cc-results">
+				<div class="cc-ratio-display">
+					<div class="cc-ratio-number" id="cc-ratio">7.15</div>
+					<div class="cc-ratio-label">Contrast Ratio</div>
+				</div>
+				<!-- WCAG Compliance -->
+				<div class="cc-compliance" role="status" aria-live="polite">
+					<div class="cc-compliance-item pass">
+						<div class="cc-compliance-title">WCAG AA - Normal Text</div>
+						<div class="cc-compliance-status pass"> <span class="cc-icon">✓</span> <span>PASS (4.5:1)</span> </div>
+					</div>
+					<div class="cc-compliance-item pass">
+						<div class="cc-compliance-title">WCAG AA - Large Text</div>
+						<div class="cc-compliance-status pass"> <span class="cc-icon">✓</span> <span>PASS (3:1)</span> </div>
+					</div>
+					<div class="cc-compliance-item pass">
+						<div class="cc-compliance-title">WCAG AAA - Normal Text</div>
+						<div class="cc-compliance-status pass"> <span class="cc-icon">✓</span> <span>PASS (7:1)</span> </div>
+					</div>
+					<div class="cc-compliance-item pass">
+						<div class="cc-compliance-title">WCAG AAA - Large Text</div>
+						<div class="cc-compliance-status pass"> <span class="cc-icon">✓</span> <span>PASS (4.5:1)</span> </div>
+					</div>
+					<div class="cc-compliance-item pass">
+						<div class="cc-compliance-title">WCAG 2.1 - UI Components</div>
+						<div class="cc-compliance-status pass"> <span class="cc-icon">✓</span> <span>PASS (3:1)</span> </div>
+					</div>
+				</div>
+			</div>
+			<!-- Preview -->
+			<div class="cc-preview">
+				<h3 class="cc-preview-title">Live Preview</h3>
+				<div class="cc-preview-samples" id="cc-preview-samples">
+					<div class="cc-preview-item">
+						<div class="cc-sample-label">Normal Text (16px)</div>
+						<div class="cc-sample-text cc-sample-normal"> The quick brown fox jumps over the lazy dog. This sample demonstrates how regular body text appears with your selected color combination. </div>
+					</div>
+					<div class="cc-preview-item">
+						<div class="cc-sample-label">Large Text (24px Bold)</div>
+						<div class="cc-sample-text cc-sample-large"> Heading text example with bold weight for enhanced readability and visual hierarchy. </div>
+					</div>
+				</div>
+			</div>
+			<!-- Actions -->
+			<div class="cc-actions">
+				<button class="cc-btn cc-btn-primary" id="cc-swap-btn"> <span>⇄</span> <span>Swap Colors</span> </button>
+				<button class="cc-btn cc-btn-secondary" id="cc-random-btn"> <span>🎲</span> <span>Random Colors</span> </button>
+				<button class="cc-btn cc-btn-secondary" id="cc-copy-btn"> <span>📋</span> <span>Copy Results</span> </button>
+			</div>
+			<!-- Suggestions -->
+			<div class="cc-suggestions" id="cc-suggestions" style="display: none;">
+				<div class="cc-suggestions-title"> <span>💡</span> <span>AI Suggestions to Fix Contrast</span> </div>
+				<div class="cc-suggestion-list" id="cc-suggestion-list">
+					<!-- Dynamically populated -->
+				</div>
+			</div>
+			<!-- Color Blindness Simulation -->
+			<div class="cc-colorblind">
+				<h3 class="cc-colorblind-title">Color Blindness Simulation</h3>
+				<div class="cc-colorblind-grid" id="cc-colorblind-grid">
+					<!-- Dynamically populated -->
+				</div>
+			</div>
+		</div>
+		<!-- Article Content -->
+		<article class="cc-article">
+			<h2>What is a Color Contrast Checker?</h2>
+			<p> A color contrast checker is a web accessibility tool that calculates the contrast ratio between text (foreground) and background colors. This ratio, expressed as a number like 4.5:1 or 7:1, determines whether your color combination meets <strong>WCAG (Web Content Accessibility Guidelines)</strong> standards for readability. </p>
+			<p> For users with visual impairments, low vision, or color blindness, adequate contrast is essential for reading digital content. This tool instantly evaluates your colors against WCAG 2.2 requirements and provides actionable recommendations. </p>
+			<h2>Understanding WCAG 2.2 Contrast Requirements</h2>
+			<p> The Web Content Accessibility Guidelines define three conformance levels: </p>
+			<ul>
+				<li><strong>Level AA (Minimum):</strong> Requires 4.5:1 contrast for normal text (under 18pt or under 14pt bold) and 3:1 for large text (18pt+ or 14pt+ bold)</li>
+				<li><strong>Level AAA (Enhanced):</strong> Requires 7:1 contrast for normal text and 4.5:1 for large text</li>
+				<li><strong>UI Components (WCAG 2.1+):</strong> Requires 3:1 contrast for interactive elements like buttons, form inputs, and icons</li>
+			</ul>
+			<p> Most websites aim for <strong>Level AA compliance</strong> as it balances accessibility with design flexibility. Government and educational websites often target AAA for maximum inclusivity. </p>
+			<h2>Why Color Contrast Matters for Web Accessibility</h2>
+			<p> Poor contrast affects approximately <strong>1 in 12 men (8%) and 1 in 200 women (0.5%)</strong> who have some form of color vision deficiency. Additionally, users with: </p>
+			<ul>
+				<li>Low vision or partial sight (246 million people worldwide)</li>
+				<li>Age-related visual decline (nearly everyone over 40)</li>
+				<li>Temporary impairments (screen glare, eye fatigue)</li>
+				<li>Situational limitations (bright sunlight on mobile devices)</li>
+			</ul>
+			<p> Beyond accessibility, proper contrast improves conversion rates, reduces bounce rates, and enhances overall user experience for everyone. </p>
+			<h2>Common Color Contrast Mistakes to Avoid</h2>
+			<h3>1. Gray Text on White Backgrounds</h3>
+			<p> Light gray (#999999) on white (#fff) produces only a 2.8:1 ratio—failing WCAG AA. Use darker grays (#767676 or darker) for body text. </p>
+			<h3>2. Colored Text on Colored Backgrounds</h3>
+			<p> Red text (#FF0000) on blue backgrounds (#0000FF) may seem vibrant but often fails contrast checks. Always verify with a contrast checker first. </p>
+			<h3>3. Thin Font Weights</h3>
+			<p> Ultra-light or thin fonts (font-weight: 100-300) require higher contrast ratios to remain readable. Avoid using them for body text. </p>
+			<h3>4. Gradient Backgrounds</h3>
+			<p> Text over gradients may pass contrast on one end but fail on the other. Test both the lightest and darkest gradient stops. </p>
+			<h2>Advanced Features: Color Blindness & AI Suggestions</h2>
+			<p> Our tool goes beyond basic contrast checking with: </p>
+			<ul>
+				<li><strong>Color Blindness Simulation:</strong> See how your colors appear to users with Protanopia, Deuteranopia, Tritanopia, and other vision deficiencies</li>
+				<li><strong>AI-Powered Fix Suggestions:</strong> Automatically generates accessible alternatives when your colors fail WCAG standards</li>
+				<li><strong>Live Preview:</strong> Real-time rendering of text at multiple sizes to assess readability</li>
+				<li><strong>Multiple Input Formats:</strong> Enter colors as HEX, RGB, or HSL—whichever you prefer</li>
+			</ul>
+		</article>
+		<!-- FAQ Section -->
+		<section class="cc-faq">
+			<h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #1a202c;">Frequently Asked Questions</h2>
+			<div class="cc-faq-item">
+				<div class="cc-faq-question"> <span>🤔</span> <span>What is a good contrast ratio for text?</span> </div>
+				<div class="cc-faq-answer"> <strong>For WCAG AA compliance, aim for at least 4.5:1 for normal text and 3:1 for large text.</strong> For enhanced accessibility (AAA), target 7:1 for normal text. Black on white produces the maximum ratio of 21:1, while white on black also achieves 21:1. </div>
+			</div>
+			<div class="cc-faq-item">
+				<div class="cc-faq-question"> <span>🤔</span> <span>How do I fix colors that fail the contrast check?</span> </div>
+				<div class="cc-faq-answer"> <strong>Darken the text color or lighten the background color (or vice versa) until you achieve the required ratio.</strong> Use our AI suggestions feature which automatically generates accessible alternatives while maintaining your color palette's intent. </div>
+			</div>
+			<div class="cc-faq-item">
+				<div class="cc-faq-question"> <span>🤔</span> <span>What's the difference between WCAG AA and AAA?</span> </div>
+				<div class="cc-faq-answer"> <strong>WCAG AA is the minimum legal standard requiring 4.5:1 contrast; AAA is an enhanced standard requiring 7:1 contrast.</strong> Most commercial websites target AA compliance, while government and educational sites often aim for AAA to ensure maximum accessibility. </div>
+			</div>
+			<div class="cc-faq-item">
+				<div class="cc-faq-question"> <span>🤔</span> <span>Do images and graphics need contrast checking?</span> </div>
+				<div class="cc-faq-answer"> <strong>Yes, WCAG 2.1 requires 3:1 contrast for UI components like icons, buttons, and form inputs.</strong> Meaningful graphics and images of text must also meet contrast requirements. Decorative images are exempt but should still maintain good visibility. </div>
+			</div>
+			<div class="cc-faq-item">
+				<div class="cc-faq-question"> <span>🤔</span> <span>Can I check contrast on mobile devices?</span> </div>
+				<div class="cc-faq-answer"> <strong>Absolutely! This tool is fully responsive and works seamlessly on mobile devices.</strong> Checking contrast on mobile is especially important since screen glare and outdoor viewing can reduce perceived contrast significantly. </div>
+			</div>
+			<div class="cc-faq-item">
+				<div class="cc-faq-question"> <span>🤔</span> <span>Why do some color combinations fail for colorblind users but pass WCAG?</span> </div>
+				<div class="cc-faq-answer"> <strong>WCAG contrast ratios measure luminance (brightness) difference, not hue difference.</strong> Colors like red and green may have adequate brightness contrast but be indistinguishable to colorblind users. Use our colorblindness simulation to test beyond WCAG requirements. </div>
+			</div>
+			<div class="cc-faq-item">
+				<div class="cc-faq-question"> <span>🤔</span> <span>What colors always pass WCAG AA?</span> </div>
+				<div class="cc-faq-answer"> <strong>Black text (#000000) on white backgrounds (#fff) always passes with a 21:1 ratio.</strong> Other reliable combinations include dark gray (#595959 or darker) on white, white on dark blue (#1e3a8a or darker), and white on dark green (#166534 or darker). </div>
+			</div>
+			<div class="cc-faq-item">
+				<div class="cc-faq-question"> <span>🤔</span> <span>Does font size affect contrast requirements?</span> </div>
+				<div class="cc-faq-answer"> <strong>Yes, large text (18pt+ or 14pt+ bold) only requires 3:1 contrast for AA and 4.5:1 for AAA.</strong> This is because larger text is inherently more readable, even with lower contrast. However, we recommend using higher contrast when possible for optimal readability. </div>
+			</div>
+		</section>
+	</div>
+</div>
+
+<style>
+* { box-sizing: border-box; }
+
+body { margin: 0; padding: 0; }
+
+.cc-container { 
+	all: initial; 
+	display: block; 
+	width: 100%; 
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; 
+	color: #1a1a1a; 
+	line-height: 1.6; 
+	-webkit-font-smoothing: antialiased; 
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.cc-main { 
+	max-width: 900px; 
+	margin: 0 auto; 
+	padding: 1rem; 
+	width: 100%;
+}
+
+.cc-header { 
+	text-align: center; 
+	margin-bottom: 2rem; 
+	padding: 1.5rem 1rem; 
+	background: linear-gradient(135deg, #249749 0%, #0c3808 100%); 
+	border-radius: 12px; 
+	color: #fff !important;
+}
+
+.cc-header h2 { 
+	font-size: clamp(1.5rem, 5vw, 2rem); 
+	color: #fff; 
+	font-weight: 700; 
+	margin: 0 0 0.75rem 0; 
+	line-height: 1.2;
+}
+
+.cc-header p { 
+	font-size: clamp(0.875rem, 3vw, 1rem); 
+	opacity: 0.95; 
+	max-width: 700px; 
+	margin: 0 auto;
+}
+
+.cc-tool { 
+	background: #fff; 
+	border-radius: 16px; 
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.06); 
+	padding: 1.5rem; 
+	margin-bottom: 2rem;
+	overflow-x: hidden;
+}
+
+.cc-inputs { 
+	display: grid; 
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+	gap: 1.5rem; 
+	margin-bottom: 2rem;
+}
+
+.cc-input-group { position: relative; }
+
+.cc-label { 
+	display: block; 
+	font-weight: 600; 
+	font-size: 0.875rem; 
+	text-transform: uppercase; 
+	letter-spacing: 0.5px; 
+	margin-bottom: 0.5rem; 
+	color: #4a5568;
+}
+
+.cc-input-wrapper { 
+	display: flex; 
+	gap: 0.75rem; 
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.cc-color-preview { 
+	width: 56px; 
+	height: 56px; 
+	border-radius: 8px; 
+	border: 2px solid #e2e8f0; 
+	cursor: pointer; 
+	transition: transform 0.2s, box-shadow 0.2s; 
+	flex-shrink: 0;
+}
+
+.cc-color-preview:hover { 
+	transform: scale(1.05); 
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cc-color-input { 
+	flex: 1; 
+	min-width: 120px;
+	padding: 0.75rem 1rem; 
+	border: 2px solid #e2e8f0; 
+	border-radius: 8px; 
+	font-size: 1rem; 
+	font-family: 'Monaco', 'Courier New', monospace; 
+	text-transform: uppercase; 
+	transition: border-color 0.2s;
+}
+
+.cc-color-input:focus { 
+	outline: none; 
+	border-color: #249749;
+}
+
+.cc-format-tabs { 
+	display: flex; 
+	gap: 0.5rem; 
+	margin-top: 0.5rem; 
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.cc-format-tab { 
+	padding: 0.375rem 0.75rem; 
+	font-size: 0.75rem; 
+	background: #f7fafc; 
+	border: 1px solid #e2e8f0; 
+	border-radius: 6px; 
+	cursor: pointer; 
+	transition: all 0.2s; 
+	font-weight: 500;
+}
+
+.cc-format-tab.active { 
+	background: #249749; 
+	color: #fff; 
+	border-color: #249749;
+}
+
+.cc-format-tab:hover:not(.active) { 
+	background: #edf2f7;
+}
+
+.cc-results { 
+	background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); 
+	border-radius: 12px; 
+	padding: clamp(1.25rem, 5vw, 2rem); 
+	margin-bottom: 2rem;
+	overflow-x: hidden;
+}
+
+.cc-ratio-display { 
+	text-align: center; 
+	margin-bottom: 2rem;
+}
+
+.cc-ratio-number { 
+	font-size: clamp(2rem, 8vw, 4rem); 
+	font-weight: 800; 
+	color: #1a202c; 
+	line-height: 1; 
+	margin-bottom: 0.5rem;
+	word-break: break-word;
+}
+
+.cc-ratio-label { 
+	font-size: clamp(0.875rem, 2vw, 1rem); 
+	color: #718096; 
+	font-weight: 500;
+}
+
+.cc-compliance { 
+	display: grid; 
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+	gap: 1rem; 
+	margin-bottom: 2rem;
+}
+
+.cc-compliance-item { 
+	background: #fff; 
+	padding: 1rem; 
+	border-radius: 8px; 
+	border-left: 4px solid #cbd5e0; 
+	transition: transform 0.2s;
+}
+
+.cc-compliance-item:hover { 
+	transform: translateY(-2px);
+}
+
+.cc-compliance-item.pass { 
+	border-left-color: #48bb78; 
+	background: #f0fff4;
+}
+
+.cc-compliance-item.fail { 
+	border-left-color: #f56565; 
+	background: #fff5f5;
+}
+
+.cc-compliance-title { 
+	font-size: 0.875rem; 
+	font-weight: 600; 
+	color: #4a5568; 
+	margin-bottom: 0.5rem;
+}
+
+.cc-compliance-status { 
+	display: flex; 
+	align-items: center; 
+	gap: 0.5rem; 
+	font-weight: 700; 
+	font-size: 1rem;
+	flex-wrap: wrap;
+}
+
+.cc-compliance-status.pass { color: #38a169; }
+
+.cc-compliance-status.fail { color: #e53e3e; }
+
+.cc-icon { width: 20px; height: 20px; display: inline-block; flex-shrink: 0; }
+
+.cc-preview { 
+	background: #fff; 
+	border-radius: 12px; 
+	padding: clamp(1rem, 5vw, 2rem); 
+	margin-bottom: 2rem;
+	overflow-x: hidden;
+}
+
+.cc-preview-title { 
+	font-size: clamp(1rem, 3vw, 1.25rem); 
+	font-weight: 700; 
+	margin-bottom: 1.5rem; 
+	color: #2d3748;
+}
+
+.cc-preview-samples { 
+	display: grid; 
+	gap: 1.5rem;
+}
+
+.cc-preview-item { 
+	padding: clamp(1rem, 3vw, 1.5rem); 
+	border-radius: 8px; 
+	border: 2px solid #e2e8f0;
+	overflow-x: auto;
+}
+
+.cc-sample-label { 
+	font-size: 0.75rem; 
+	font-weight: 600; 
+	text-transform: uppercase; 
+	letter-spacing: 0.5px; 
+	margin-bottom: 0.75rem; 
+	opacity: 0.7;
+}
+
+.cc-sample-text { 
+	font-weight: 400; 
+	line-height: 1.6;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.cc-sample-normal { font-size: clamp(0.875rem, 2vw, 1rem); }
+
+.cc-sample-large { 
+	font-size: clamp(1.25rem, 4vw, 1.5rem); 
+	font-weight: 700;
+}
+
+.cc-actions { 
+	display: flex; 
+	gap: 0.75rem; 
+	flex-wrap: wrap; 
+	margin-bottom: 2rem;
+	justify-content: center;
+}
+
+.cc-btn { 
+	padding: 0.75rem 1.5rem; 
+	border-radius: 8px; 
+	font-weight: 600; 
+	font-size: 0.875rem; 
+	cursor: pointer; 
+	transition: all 0.2s; 
+	border: none; 
+	display: inline-flex; 
+	align-items: center; 
+	gap: 0.5rem; 
+	text-decoration: none; 
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.cc-btn-primary { 
+	background: #249749; 
+	color: #fff;
+}
+
+.cc-btn-primary:hover { 
+	background: #1e7d3b; 
+	transform: translateY(-1px); 
+	box-shadow: 0 4px 12px rgba(36, 151, 73, 0.3);
+}
+
+.cc-btn-secondary { 
+	background: #edf2f7; 
+	color: #2d3748; 
+	border: 2px solid #e2e8f0;
+}
+
+.cc-btn-secondary:hover { 
+	background: #e2e8f0;
+}
+
+.cc-suggestions { 
+	background: linear-gradient(135deg, #fff5f7 0%, #fed7e2 20%, #fbb6ce 100%); 
+	border-radius: 12px; 
+	padding: clamp(1rem, 5vw, 2rem); 
+	margin-bottom: 2rem; 
+	border: 2px solid #fc8181;
+	overflow-x: hidden;
+}
+
+.cc-suggestions.success { 
+	background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%); 
+	border-color: #48bb78;
+}
+
+.cc-suggestions-title { 
+	font-size: clamp(1rem, 3vw, 1.125rem); 
+	font-weight: 700; 
+	margin-bottom: 1rem; 
+	display: flex; 
+	align-items: center; 
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.cc-suggestion-list { 
+	display: grid; 
+	gap: 0.75rem;
+}
+
+.cc-suggestion-item { 
+	background: rgba(255, 255, 255, 0.8); 
+	padding: 1rem; 
+	border-radius: 8px; 
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
+	flex-wrap: wrap; 
+	gap: 1rem;
+	overflow-x: auto;
+}
+
+.cc-suggestion-colors { 
+	display: flex; 
+	gap: 0.5rem; 
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.cc-suggestion-swatch { 
+	width: 40px; 
+	height: 40px; 
+	border-radius: 6px; 
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	flex-shrink: 0;
+}
+
+.cc-suggestion-info { 
+	font-size: 0.875rem;
+}
+
+.cc-suggestion-ratio { 
+	font-weight: 700; 
+	color: #2d3748;
+}
+
+.cc-article { 
+	max-width: 900px; 
+	margin: 0 auto 2rem;
+	padding: 1rem;
+	overflow-x: hidden;
+}
+
+.cc-article h2 { 
+	font-size: clamp(1.5rem, 4vw, 2rem); 
+	font-weight: 700; 
+	color: #1a202c; 
+	margin: 2.5rem 0 1rem; 
+	line-height: 1.3;
+}
+
+.cc-article h3 { 
+	font-size: clamp(1.125rem, 3vw, 1.5rem); 
+	font-weight: 600; 
+	color: #2d3748; 
+	margin: 1.5rem 0 0.75rem;
+}
+
+.cc-article p { 
+	font-size: clamp(0.875rem, 2vw, 1.0625rem); 
+	line-height: 1.8; 
+	color: #4a5568; 
+	margin-bottom: 1.25rem;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.cc-article strong { 
+	font-weight: 600; 
+	color: #2d3748;
+}
+
+.cc-article ul { 
+	list-style: none; 
+	padding-left: 0; 
+	margin-bottom: 1.5rem;
+}
+
+.cc-article li { 
+	padding-left: 1.75rem; 
+	position: relative; 
+	margin-bottom: 0.75rem; 
+	color: #4a5568; 
+	line-height: 1.7;
+}
+
+.cc-article li::before { 
+	content: "✓"; 
+	position: absolute; 
+	left: 0; 
+	color: #249749; 
+	font-weight: 700;
+}
+
+.cc-faq { 
+	max-width: 900px; 
+	margin: 0 auto 2rem;
+	padding: 1rem;
+	overflow-x: hidden;
+}
+
+.cc-faq-item { 
+	background: #fff; 
+	border-radius: 12px; 
+	padding: clamp(1rem, 3vw, 1.5rem); 
+	margin-bottom: 1rem; 
+	border: 2px solid #e2e8f0; 
+	transition: border-color 0.2s;
+}
+
+.cc-faq-item:hover { 
+	border-color: #249749;
+}
+
+.cc-faq-question { 
+	font-size: clamp(1rem, 2.5vw, 1.125rem); 
+	font-weight: 600; 
+	color: #2d3748; 
+	margin-bottom: 0.75rem; 
+	display: flex; 
+	align-items: flex-start; 
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.cc-faq-answer { 
+	font-size: clamp(0.875rem, 2vw, 1rem); 
+	line-height: 1.7; 
+	color: #4a5568;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.cc-sr-only { 
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip: rect(0, 0, 0, 0); 
+	white-space: nowrap; 
+	border-width: 0;
+}
+
+.cc-loading { 
+	opacity: 0.6; 
+	pointer-events: none;
+}
+
+.cc-colorblind { 
+	background: #fff; 
+	border-radius: 12px; 
+	padding: clamp(1rem, 5vw, 1.5rem); 
+	margin-bottom: 2rem;
+	overflow-x: auto;
+}
+
+.cc-colorblind-title { 
+	font-size: clamp(1rem, 3vw, 1.125rem); 
+	font-weight: 700; 
+	margin-bottom: 1rem; 
+	color: #2d3748;
+}
+
+.cc-colorblind-grid { 
+	display: grid; 
+	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
+	gap: 1rem;
+}
+
+.cc-colorblind-item { 
+	text-align: center;
+}
+
+.cc-colorblind-sample { 
+	width: 100%; 
+	aspect-ratio: 16/9; 
+	border-radius: 8px; 
+	border: 2px solid #e2e8f0; 
+	margin-bottom: 0.5rem; 
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+	font-weight: 700; 
+	font-size: 0.75rem;
+}
+
+.cc-colorblind-label { 
+	font-size: 0.75rem; 
+	color: #718096; 
+	font-weight: 500;
+}
+
+@media (max-width: 640px) {
+	.cc-main { 
+		padding: 0.75rem; 
+	}
+
+	.cc-header { 
+		padding: 1rem 0.75rem; 
+		border-radius: 8px; 
+		margin-bottom: 1.5rem;
+	}
+
+	.cc-tool { 
+		padding: 1rem; 
+		margin-bottom: 1.5rem;
+	}
+
+	.cc-inputs { 
+		grid-template-columns: 1fr; 
+		gap: 1rem;
+	}
+
+	.cc-compliance { 
+		grid-template-columns: 1fr; 
+		gap: 0.75rem;
+	}
+
+	.cc-actions { 
+		flex-direction: column; 
+		gap: 0.5rem;
+	}
+
+	.cc-btn { 
+		width: 100%; 
+		justify-content: center;
+	}
+
+	.cc-colorblind-grid { 
+		grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+	}
+
+	.cc-preview-item { 
+		padding: 1rem;
+	}
+
+	.cc-faq-item { 
+		padding: 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.cc-main { 
+		padding: 0.5rem;
+	}
+
+	.cc-header h2 { 
+		font-size: 1.25rem;
+	}
+
+	.cc-header p { 
+		font-size: 0.8rem;
+	}
+
+	.cc-actions { 
+		flex-direction: column;
+	}
+
+	.cc-compliance { 
+		grid-template-columns: 1fr;
+	}
+
+	.cc-colorblind-grid { 
+		grid-template-columns: 1fr;
+	}
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/gh/tbbcom/color@main/asset/contrast.min.js?v=20260226-1.0" defer></script>
